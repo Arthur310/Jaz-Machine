@@ -5,10 +5,45 @@
  */
 package jazmachine;
 
+import java.util.List;
+import jazmachine.Analyzer.CodeType;
+
 /**
  *
  * @author Son
  */
 public class ProgramGenerator {
-    
+       else if (list.get(i).instruction.equals("pop")) StackBank.pop();
+            else if (list.get(i).instruction.equals(":=")) StackBank.assign();
+            else if (list.get(i).instruction.equals("copy")) StackBank.copy();
+            else if (list.get(i).instruction.equals("+")) Arithmetic.plus();
+            else if (list.get(i).instruction.equals("-")) Arithmetic.subtract();
+            else if (list.get(i).instruction.equals("*")) Arithmetic.multiply();
+            else if (list.get(i).instruction.equals("/")) Arithmetic.divide();
+            else if (list.get(i).instruction.equals("div")) Arithmetic.remainder();
+            else if (list.get(i).instruction.equals("&")) Logical.AND();
+            else if (list.get(i).instruction.equals("!")) Logical.Negate();
+            else if (list.get(i).instruction.equals("|")) Logical.OR();
+            else if (list.get(i).instruction.equals("<>")) Relational.Equal();
+            else if (list.get(i).instruction.equals("<=")) Relational.LessOrEqual();
+            else if (list.get(i).instruction.equals(">=")) Relational.GreaterOrEqual();
+            else if (list.get(i).instruction.equals("<")) Relational.Less();
+            else if (list.get(i).instruction.equals(">")) Relational.Greater();
+            else if (list.get(i).instruction.equals("=")) Relational.Same();
+            else if (list.get(i).instruction.equals("print")) Output.Print();
+            else if (list.get(i).instruction.equals("show")) Output.Show(list.get(i).parameter);
+            
+            
+            
+            
+            
+        /*  
+            } else if ((list.get(i).instruction.equals("begin")) ||
+                       (list.get(i).instruction.equals("end")) ||
+                       (list.get(i).instruction.equals("return")) ||
+                       (list.get(i).instruction.equals("call"))) {
+                Subprogram(list.get(i));
+            } */
+        }
+    }
 }
