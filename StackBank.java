@@ -15,23 +15,11 @@ public class StackBank {
     private static Stack<Object> stackbank = new Stack<Object>();
     
     public static Object peek() {
-        return pick(0);
+        return stackbank.peek();
     }
 
     public static int peekInteger() {
-        return pickInteger(0);
-    }
-
-    public static String peekVariable() {
-        return pickVariable(0);
-    }
-
-    public static Object pick(int position) {
-        return stackbank.get(stackbank.size() - 1 - position);
-    }
-
-    public static int pickInteger(int position) {
-        Object top = pick(position);
+        Object top = peek();
         if(top instanceof Integer) {
             return (Integer)top;
         } else {
@@ -39,8 +27,8 @@ public class StackBank {
         }
     }
 
-    public static String pickVariable(int position) {
-        Object top = pick(position);
+    public static String peekVariable() {
+        Object top = peek();
         if(top instanceof String) {
             return (String)top;
         } else {
