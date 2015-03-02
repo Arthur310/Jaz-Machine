@@ -33,6 +33,13 @@ public class ProgramGenerator {
                     if (Integer.parseInt(StackBank.pop().toString()) == 0)
                         i = ControlFlow.getLabel(list.get(i).parameter) + 1;
                 } else i = ControlFlow.getLabel("halt");
+            } else if (list.get(i).instruction.equals("call")) {
+                if (ControlFlow.CheckHM(list.get(i).parameter)) {
+                    i = ControlFlow.getLabel(list.get(i).parameter) + 1;
+                    SubRoutine.push(i);
+                } else i = ControlFlow.getLabel("halt");
+            } else if (list.get(i).instruction.equals("return")) {
+                i = SubRoutine.pop() + 1;
             }
             
             if (list.get(i).instruction.equals("halt")) break;
