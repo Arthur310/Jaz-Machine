@@ -18,17 +18,17 @@ public class VirtualMachine {
             CodeType code = program.getInstruction(i);
             switch(code.instruction) {
                 case "push":
-                    MemoryOperations.push(code.parameter);
+                    MemoryOperations.push(code.parameter.trim());
                     i++;
                     break;
 
                 case "rvalue":
-                    MemoryOperations.rvalue(code.parameter);
+                    MemoryOperations.rvalue(code.parameter.trim());
                     i++;
                     break;
 
                 case "lvalue":
-                    MemoryOperations.lvalue(code.parameter);
+                    MemoryOperations.lvalue(code.parameter.trim());
                     i++;
                     break;
 
@@ -48,12 +48,12 @@ public class VirtualMachine {
                     break;
 
                 case "goto":
-                    i = program.getLabel(code.parameter);
+                    i = program.getLabel(code.parameter.trim());
                     break;
 
                 case "gofalse":
                     if(StackBank.popInteger() == 0) {
-                        i = program.getLabel(code.parameter);
+                        i = program.getLabel(code.parameter.trim());
                     } else {
                         i++;
                     }
@@ -61,7 +61,7 @@ public class VirtualMachine {
 
                 case "gotrue":
                     if(StackBank.popInteger() != 0) {
-                        i = program.getLabel(code.parameter);
+                        i = program.getLabel(code.parameter.trim());
                     } else {
                         i++;
                     }
@@ -167,7 +167,7 @@ public class VirtualMachine {
 
                 case "call":
                     SubRoutine.push(i + 1);
-                    i = program.getLabel(code.parameter);
+                    i = program.getLabel(code.parameter.trim());
                     Memory.changeScope();
                     break;
             }

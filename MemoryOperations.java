@@ -16,7 +16,7 @@ public abstract class MemoryOperations {
     }
 
     public static void lvalue(String parameter) {
-        StackBank.push(parameter.trim());
+        StackBank.push(parameter);
     }
 
     public static void pop() {
@@ -24,10 +24,10 @@ public abstract class MemoryOperations {
     }
 
     public static void push(String parameter) {
-        StackBank.push(Integer.parseInt(parameter.trim()));
+        StackBank.push(Integer.parseInt(parameter));
     }
 
     public static void rvalue(String parameter) {
-        StackBank.push(Memory.get(parameter.trim()));
+        StackBank.push(Memory.get(parameter));
     }
 }
