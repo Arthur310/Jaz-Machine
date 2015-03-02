@@ -4,7 +4,7 @@ package jazmachine;
  *
  * @author Son
  */
-public class RelationalOperations {        
+public abstract class RelationalOperations {        
     public static void equal() {
 		int y = StackBank.popInteger();
 		int x = StackBank.popInteger();
