@@ -4,59 +4,67 @@
  * and open the template in the editor.
  */
 package jazmachine;
-import java.util.HashMap;
+
 import java.util.Stack;
+
 /**
  *
  * @author Son
  */
 public class StackBank {
-    static Stack<Object> stackbank = new Stack<Object>();
-    static HashMap<String, Integer> hm = new HashMap<String, Integer>();
+    private static Stack<Object> stackbank = new Stack<Object>();
     
-    public static void push(Object o) {
-	stackbank.push(o);
-    }
-	
-    public static void rvalue(String var) {
-        stackbank.push(var);
-    }
-	
-    public static void lvalue(String var) {
-    	stackbank.push(var);
-    }
-	
-    public static Object pop() {
-	return stackbank.pop();
-    }
-	
     public static Object peek() {
-	return stackbank.peek();
-    }
-    
-    public static void assign() {
-	int i = Integer.parseInt(stackbank.pop().toString());
-	String u = stackbank.pop().toString();
-        put(u, i);
-    }
-	
-    public static void copy() {
-	stackbank.push(stackbank.peek());
-    }
-    
-    public static void put(String var) {
-	hm.put(var, null);
-    }
-	
-    public static void put(String var, int value) {
-	hm.put(var, value);
-    }
-	
-    public static int get(String var) {
-	return hm.get(var);
+        return pick(0);
     }
 
-    public static boolean contains(String var) {
-	return hm.containsKey(var);
+    public static int peekInteger() {
+        return pickInteger(0);
+    }
+
+    public static String peekVariable() {
+        return pickVariable(0);
+    }
+
+    public static Object pick(int position) {
+        return stackbank.get(stackbank.size() - 1 - position);
+    }
+
+    public static int pickInteger(int position) {
+        Object top = pick(position);
+        if(top instanceof Integer) {
+            return (Integer)top;
+        } else {
+            throw new ProgramException("Stack expected rvalue, found lvalue.");
+        }
+    }
+
+    public static String pickVariable(int position) {
+        Object top = pick(position);
+        if(top instanceof String) {
+            return (String)top;
+        } else {
+            throw new ProgramException("Stack expected lvalue, found rvalue.");
+        }
+    }
+
+    public static Object pop() {
+        return stackbank.pop();
+    }
+    
+    public static int popInteger() {
+        int result = peekInteger();
+        stackbank.pop();
+        return result;
+    }
+
+    public static String popVariable() {
+        String result = peekVariable();
+        stackbank.pop();
+        return result;
+    }
+
+    public static void push(Object value) {
+        stackbank.push(value);
     }
 }
