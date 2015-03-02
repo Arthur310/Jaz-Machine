@@ -26,15 +26,17 @@ public class Analyzer {
             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                parts = line.split(" ", 2);
-                switch(parts.length) {
-                    case 1:
-                        list.add(new CodeType(parts[0].trim()));
-                        break;
+                parts = line.trim().split(" ", 2);
+                if(!parts[0].isEmpty()) {
+                    switch(parts.length) {
+                        case 1:
+                            list.add(new CodeType(parts[0].trim()));
+                            break;
 
-                    case 2:
-                        list.add(new CodeType(parts[0].trim(), parts[1].trim()));
-                        break;
+                        case 2:
+                            list.add(new CodeType(parts[0].trim(), parts[1]));
+                            break;
+                    }
                 }
             }
         }

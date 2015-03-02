@@ -16,7 +16,6 @@ public class VirtualMachine {
         int i = 0;
         while(i < program.getInstructionCount()) {
             CodeType code = program.getInstruction(i);
-            System.out.println("Executing instruction " + i + " (" + code.instruction + ").");
             switch(code.instruction) {
                 case "push":
                     MemoryOperations.push(code.parameter);
@@ -55,12 +54,16 @@ public class VirtualMachine {
                 case "gofalse":
                     if(StackBank.popInteger() == 0) {
                         i = program.getLabel(code.parameter);
+                    } else {
+                        i++;
                     }
                     break;
 
                 case "gotrue":
                     if(StackBank.popInteger() != 0) {
                         i = program.getLabel(code.parameter);
+                    } else {
+                        i++;
                     }
                     break;
 

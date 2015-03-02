@@ -10,8 +10,8 @@ package jazmachine;
  * @author Son
  */
 public class CodeType {
-    String instruction = null;
-    String parameter = null;
+    String instruction = "";
+    String parameter = "";
 
     CodeType() {}
 
