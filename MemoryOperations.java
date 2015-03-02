@@ -8,11 +8,11 @@ public abstract class MemoryOperations {
     public static void assign() {
         int i = StackBank.popInteger();
         String u = StackBank.popVariable();
-        put(u, i);
+        Memory.set(u, i);
     }
     
     public static void copy() {
-        StackBank.push(stackbank.peek());
+        StackBank.push(StackBank.peek());
     }
 
     public static void lvalue(String parameter) {

@@ -1,0 +1,16 @@
+-d out
+Analyzer.java
+ArithmeticOperations.java
+CodeType.java
+JazMachine.java
+LogicalOperations.java
+Memory.java
+MemoryOperations.java
+OutputOperations.java
+ProgramException.java
+ProgramGenerator.java
+ProgramType.java
+RelationalOperations.java
+StackBank.java
+SubRoutine.java
+VirtualMachine.java

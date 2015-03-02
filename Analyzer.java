@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ import java.util.List;
  * @author Son
  */
 public class Analyzer {
-    List<CodeType> ParseFile(String filename)
+    public static List<CodeType> parseFile(String filename)
             throws IOException {
         List<CodeType> list = new ArrayList<CodeType>();
         String[] parts = new String[2];
@@ -30,11 +29,11 @@ public class Analyzer {
                 parts = line.split(" ", 2);
                 switch(parts.length) {
                     case 1:
-                        list.add(new CodeType(parts[0]));
+                        list.add(new CodeType(parts[0].trim()));
                         break;
 
                     case 2:
-                        list.add(new CodeType(parts[0], parts[1]));
+                        list.add(new CodeType(parts[0].trim(), parts[1].trim()));
                         break;
                 }
             }

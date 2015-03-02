@@ -5,6 +5,7 @@
  */
 package jazmachine;
 
+import java.io.PrintStream;
 import java.util.List;
 
 /**
@@ -17,9 +18,22 @@ public class JazMachine {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        if(args.length < 2) {
+            System.err.println("Required parameters: <infile> <outfile>");
+            return;
+        }
+
+        String inFile = args[0];
+        String outFile = args[1];
+
     	try {
-	        Analyzer anlyz = new Analyzer();
-	        List<CodeType> source = anlyz.ParseFile("demo.jaz");
+	        List<CodeType> source = Analyzer.parseFile(inFile);
+            ProgramType program = ProgramGenerator.compile(source);
+
+            try(PrintStream output = new PrintStream(outFile)) {
+                OutputOperations.out = output;
+                VirtualMachine.execute(program);
+            }
     	} catch(Exception e) {
     		e.printStackTrace();
     	}

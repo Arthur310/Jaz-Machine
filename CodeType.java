@@ -5,8 +5,6 @@
  */
 package jazmachine;
 
-import java.util.Stack;
-
 /**
  *
  * @author Son

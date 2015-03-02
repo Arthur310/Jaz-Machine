@@ -10,16 +10,18 @@ import java.util.Stack;
  */
 public class Memory {
     private static Memory memory = new Memory();
-    static {
-        beginScope();
-        changeScope();
-    }
 
     private Stack<Map<String, Integer>> maps = new Stack<Map<String, Integer>>();
     private Map<String, Integer> readMap = null;
     private Map<String, Integer> writeMap = null;
 
-    private Memory() {}
+    private Memory() {
+        Map<String, Integer> map = new HashMap<String, Integer>();
+
+        maps.push(map);
+        readMap = map;
+        writeMap = map;
+    }
 
     public static void beginScope() {
         Map<String, Integer> map = new HashMap<String, Integer>();
