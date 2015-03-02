@@ -18,23 +18,28 @@ import java.util.List;
  * @author Son
  */
 public class Analyzer {
-    List<CodeType> list = new ArrayList<CodeType>();
-    void ParseFile(String filename) {
-        try {
-            String[] parts = new String[2];
-            File file = new File(filename);
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+    List<CodeType> ParseFile(String filename)
+            throws IOException {
+        List<CodeType> list = new ArrayList<CodeType>();
+        String[] parts = new String[2];
+        File file = new File(filename);
+        try(FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 parts = line.split(" ", 2);
-                CodeType codetype = new CodeType(parts[0], parts[1]);
-                list.add(codetype);
+                switch(parts.length) {
+                    case 1:
+                        list.add(new CodeType(parts[0]));
+                        break;
+
+                    case 2:
+                        list.add(new CodeType(parts[0], parts[1]));
+                        break;
+                }
             }
-            fileReader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-	}
+        }
+        return list;
     }
     
     public class CodeType {
@@ -43,6 +48,11 @@ public class Analyzer {
         CodeType() {
             instruction = "";
             parameter = "";
+        }
+
+        CodeType(String instruction) {
+            this.instruction = instruction;
+            this.parameter = "";
         }
         
         CodeType (String Instruction, String Parameter) {
