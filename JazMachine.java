@@ -6,7 +6,6 @@
 package jazmachine;
 
 import java.util.List;
-import jazmachine.Analyzer.CodeType;
 
 /**
  *

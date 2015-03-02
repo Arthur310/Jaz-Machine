@@ -41,23 +41,4 @@ public class Analyzer {
         }
         return list;
     }
-    
-    public class CodeType {
-        String instruction;
-        String parameter;
-        CodeType() {
-            instruction = "";
-            parameter = "";
-        }
-
-        CodeType(String instruction) {
-            this.instruction = instruction;
-            this.parameter = "";
-        }
-        
-        CodeType (String Instruction, String Parameter) {
-            instruction = Instruction;
-            parameter = Parameter;
-        }    
-    }    
 }
