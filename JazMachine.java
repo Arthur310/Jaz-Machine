@@ -18,22 +18,17 @@ public class JazMachine {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        if(args.length < 2) {
-            System.err.println("Required parameters: <infile> <outfile>");
+        if(args.length < 1) {
+            System.err.println("Required parameters: <infile>");
             return;
         }
 
         String inFile = args[0];
-        String outFile = args[1];
 
     	try {
 	        List<CodeType> source = Analyzer.parseFile(inFile);
             ProgramType program = ProgramGenerator.compile(source);
-
-            try(PrintStream output = new PrintStream(outFile)) {
-                OutputOperations.out = output;
-                VirtualMachine.execute(program);
-            }
+            VirtualMachine.execute(program);
     	} catch(Exception e) {
     		e.printStackTrace();
     	}
